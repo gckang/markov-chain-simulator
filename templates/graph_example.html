@@ -25,80 +25,89 @@
     {% include 'navbar.html' %}
     <div class="container mt-4">
         <h1  style = "text-align: center;">Graph-based Markov Chains</h1>
+        <div>
+            <p class="text">
+                A graph is the most natural and general way to model a finite state Markov Chain is using a graph. Each state and their connections are well represented by a node. This is the general example we use for our default simulations. Here we showcase an example of seeing the probability we travel to state 3 before traveling to state 4 given we start at state 0.
+            </p>
+        </div>
+
+        <div class="grid-container-element">
+            <div class="grid-child-element purple" id="probabilityMatrix">
+                <h2>Probability Matrix</h2>
+                <table class ="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>From State</th>
+                            {% for state in range(5) %}
+                                <th>{{ state }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr>
+                                <td>0</td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0.3"></td>
+                                <td><input type="text" class="form-control" value="0.7"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td><input type="text" class="form-control" value="0.2"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0.4"></td>
+                                <td><input type="text" class="form-control" value="0.4"></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0.4"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0.6"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0.4"></td>
+                                <td><input type="text" class="form-control" value="0.6"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="1"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grid-child-element green" id="networkGraph">
+                <h3>Network Graph</h3>
+                <div id="mynetwork"></div>  
+            </div>
+
+        </div>
+    
+        <div>
+            <p class="text">
+                The general methodology of solving this problem is similar to our expected time until reaching problem. We set states 3 and 4 as absorbing states and consider the resulting transient matrix (that includes our starting matrix.) This will make our new transition matrix look as follows.
+        
+                $$Q = \begin{bmatrix} 0 & 0.3 & 0.7 \\ 0.2 & 0 & 0 \\ 0 & 0.4 & 0 \end{bmatrix}$$
+                However this time we will solve the equation
+        
+                $$A = (1-Q)^{-1}B$$
+        
+                where \(B\) represents the transition matrix of states in \(Q\) to our goal state (in this case 4.) In this case our answer will be the entry \(A(0)\). In this example \(A(0)\) will end up being \(\frac{163}{221}\)
+            </p>
+        </div>
     </div>
-    <div>
-        <p class="text">
-            A graph is the most natural and general way to model a finite state Markov Chain is using a graph. Each state and their connections are well represented by a node. This is the general example we use for our default simulations. Here we showcase an example of seeing the probability we travel to state 3 before traveling to state 4 given we start at state 0.
-        </p>
-    </div>
-    <div class="probabilityMatrix">
-        <h2>Probability Matrix</h2>
-        <table class ="table table-bordered">
-            <thead>
-                <tr>
-                    <th>From State</th>
-                    {% for state in range(5) %}
-                        <th>{{ state }}</th>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0.3"></td>
-                        <td><input type="text" class="form-control" value="0.7"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td><input type="text" class="form-control" value="0.2"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0.4"></td>
-                        <td><input type="text" class="form-control" value="0.4"></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0.4"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0.6"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0.4"></td>
-                        <td><input type="text" class="form-control" value="0.6"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="1"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                    </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div id="mynetwork"></div>  
-
-    <p class="text">
-        The general methodology of solving this problem is similar to our expected time until reaching problem. We set states 3 and 4 as absorbing states and consider the resulting transient matrix (that includes our starting matrix.) This will make our new transition matrix look as follows.
-
-        $$Q = \begin{bmatrix} 0 & 0.3 & 0.7 \\ 0.2 & 0 & 0 \\ 0 & 0.4 & 0 \end{bmatrix}$$
-        However this time we will solve the equation
-
-        $$A = (1-Q)^{-1}B$$
-
-        where \(B\) represents the transition matrix of states in \(Q\) to our goal state (in this case 4.) In this case our answer will be the entry \(A(0)\). In this example \(A(0)\) will end up being \(\frac{163}{221}\)
-    </p>
 
     <script type="text/javascript">
         let nodes = new vis.DataSet([   
