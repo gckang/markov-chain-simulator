@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Irreducible and Aperiodic Markov Chains</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -11,6 +12,14 @@
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 </script>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}"> 
+<style type="text/css">
+    #mynetwork {
+        width: 600px;
+        height: 400px;
+        border: 1px solid lightgray;
+        text-align: center;
+    }
+</style>
 </head>
 <body>
     {% include 'navbar.html' %}
@@ -61,9 +70,57 @@
             </tbody>
         </table>
 
-    </div>    
+    </div>  
+    <div id="mynetwork"></div>  
     <p class="text">
         The normalized left eigenvector corresponding to eigenvalue 1 is /((\frac{11}{39}, \frac{16}{39}, \frac{12}{39})/).
     </p>
 </div>
+<script type="text/javascript">
+    let nodes = new vis.DataSet([   
+        { id: 1, label: "Node 1" },
+        { id: 2, label: "Node 2" },
+        { id: 3, label: "Node 3" },
+    ]);
+    let edges = new vis.DataSet([
+        { from: 1, to: 1},
+        { from: 1, to: 2},
+        { from: 1, to: 3},
+        { from: 2, to: 1},
+        { from: 2, to: 2},
+        { from: 2, to: 3},
+        { from: 3, to: 1},
+        { from: 3, to: 2},
+        { from: 3, to: 3},
+    ]);
+
+    let data = {
+        nodes: nodes,
+        edges: edges
+    };
+    let options = {
+        nodes:{
+            color: '#ffffff',
+            fixed: false,
+            font: '12px arial black',
+            scaling: {
+                label: true
+            },
+            shadow: true,
+            shape: 'circle',
+            margin: 10
+        },
+        edges: {
+            arrows: 'to',
+            color: 'black',
+            scaling: {
+                label: true,
+            },
+            shadow: true,
+        }
+    };
+    let container = document.getElementById("mynetwork");
+
+    let network = new vis.Network(container, data, options);
+</script>
 </body>
