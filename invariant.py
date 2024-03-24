@@ -17,6 +17,7 @@ class InvariantSimulation:
     def simulation_move(self):
         self.simulation.change_state()
         self.total_moves += 1
+        print(self.simulation.get_current_state())
         self.number_hits[self.simulation.get_current_state()] += 1
         for i in range(len(self.number_hits)):
             if self.number_hits[i] == 0:

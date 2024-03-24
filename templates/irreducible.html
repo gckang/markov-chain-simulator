@@ -70,6 +70,7 @@
                             </tr>
                     </tbody>
                 </table>
+                <div id="frequencies"></div>
             </div>  
             <div class="grid-child-element green" id="networkGraph">
                 <h3>Network Graph</h3>
@@ -86,20 +87,20 @@
     </div>
 <script type="text/javascript">
     let nodes = new vis.DataSet([   
-        { id: 1, label: "0" },
-        { id: 2, label: "1" },
-        { id: 3, label: "2" },
+        { id: 0, label: "0" },
+        { id: 1, label: "1" },
+        { id: 2, label: "2" },
     ]);
     let edges = new vis.DataSet([
+        { from: 0, to: 0},
+        { from: 0, to: 1},
+        { from: 0, to: 2},
+        { from: 1, to: 0},
         { from: 1, to: 1},
         { from: 1, to: 2},
-        { from: 1, to: 3},
+        { from: 2, to: 0},
         { from: 2, to: 1},
         { from: 2, to: 2},
-        { from: 2, to: 3},
-        { from: 3, to: 1},
-        { from: 3, to: 2},
-        { from: 3, to: 3},
     ]);
 
     let data = {
@@ -108,6 +109,7 @@
     };
     let options = {
         nodes:{
+            color: '#ffffff',
             fixed: false,
             font: '12px arial black',
             scaling: {
@@ -129,10 +131,6 @@
     let container = document.getElementById("mynetwork");
 
     let network = new vis.Network(container, data, options);
-
-    nodes.forEach(function (node) {
-        node.color = { background: 'white' }
-    });
 
     // Function to update the color of the current state node
     function updateCurrentState(state) {
@@ -163,6 +161,8 @@
         .then(data => {
             // Update graph with new state
             updateCurrentState(data.current_state);
+            // Display freq
+            document.getElementById("frequencies").innerHTML = "Frequencies: " + JSON.stringify(data.frequencies);
         })
         .catch(error => console.error('Error:', error));
     }

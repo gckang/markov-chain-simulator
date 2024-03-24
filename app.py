@@ -7,7 +7,7 @@ import numpy as np
 
 app = Flask(__name__)
 
-number_states = 0
+number_states = 3
 probability_matrix = [[]]
 network = None
 invariant_sim = None
@@ -15,12 +15,13 @@ invariant_sim = None
 @app.route("/", methods=["GET", "POST"])
 
 def invariant():
-    number_states = 0
+    global number_states, probability_matrix
+    number_states = 3
     probability_matrix = [[0.2, 0.4, 0.4], [0.4, 0.5, 0.1], [0.6, 0.3, 0.1]]  # Example probability matrix
     if request.method == "POST":
         number_states = int(request.form.get("numberStatesInput"))
 
-    print("Probability Matrix in Flask:", probability_matrix) 
+    #print("Probability Matrix in Flask:", probability_matrix) 
     return render_template("irreducible.html", number_states=number_states, probability_matrix=probability_matrix)
 
 @app.route("/simulate_step", methods=['POST'])
@@ -28,10 +29,12 @@ def simulate_step_invariant():
     global number_states, probability_matrix, invariant_sim
     if invariant_sim is None:
         # Initialize invariant_sim if not initialized yet
-        invariant_sim = InvariantSimulation(number_states, probability_matrix)
-    
-    current_state = 0
-    return jsonify({'current_state': current_state})
+        invariant_sim = InvariantSimulation(number_states, np.array(probability_matrix))
+        current_state = 0
+    else:
+        current_state = invariant_sim.simulation_move()
+    frequencies = invariant_sim.getInvariant()
+    return jsonify({'current_state': current_state, 'frequencies': frequencies})
 
 @app.route("/expected-movements", methods=["GET", "POST"])
 def expectation():
