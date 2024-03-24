@@ -10,15 +10,16 @@
 <script type="text/javascript" id="MathJax-script" async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 </script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}"> 
 </head>
 <body>
     {% include 'navbar.html' %}
 
-    <div class="container mt-4" style="width: 70%;" >
-        <h1>Irreducible and Aperiodic Markov Chains</h1>
+    <div class="container mt-4">
+        <h1  style = "text-align: center;">Irreducible and Aperiodic Markov Chains</h1>
     </div>
 <div>
-    <p style = "width: 80%;">
+    <p class="text">
         Recall, a Markov Chain is irreducible if it consists of only one communication class. If a Markov Chain is both irreducible and aperiodic, the existence of a stationary distribution is guaranteed. In this case, the distribution will satisfy the following.
         
         $$\pi P = \pi$$
@@ -26,27 +27,42 @@
         $$(P - I)^\intercal\pi^\intercal = 0$$
         
         In the case of an irreducible aperiodic Markov Chain, it suffices to simply find such a nonzero right eigenvector corresponding to an eigenvalue of 1 and then normalizing that eigenvector. We demonstrate with the following example.
-
-        <div id="matrix">
-            <table>
+    </p>
+    <div class="probabilityMatrix">
+        <h2>Probability Matrix</h2>
+        <table class ="table table-bordered">
+            <thead>
                 <tr>
-                   <td><input value="0.2" style="background-color: rgba(221, 238, 255, 0);"></td>
-                   <td><input value="0.4" style="background-color: rgba(221, 238, 255, 0);"></td>
-                   <td><input value="0.4" style="background-color: rgba(221, 238, 255, 0);"></td>
+                    <th>From State</th>
+                    {% for state in range(3) %}
+                        <th>{{ state }}</th>
+                    {% endfor %}
                 </tr>
-                <tr>
-                    <td><input value="0.4" style="background-color: rgba(221, 238, 255, 0);"></td>
-                    <td><input value="0.5" style="background-color: rgba(221, 238, 255, 0);"></td>
-                    <td><input value="0.1" style="background-color: rgba(221, 238, 255, 0);"></td>
-                 </tr>
-                 <tr>
-                    <td><input value="0.6" style="background-color: rgba(221, 238, 255, 0);"></td>
-                    <td><input value="0.3" style="background-color: rgba(221, 238, 255, 0);"></td>
-                    <td><input value="0.1" style="background-color: rgba(221, 238, 255, 0);"></td>
-                 </tr>
-            </table>
-        </div>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td><input type="text" class="form-control" value="0.2"></td>
+                        <td><input type="text" class="form-control" value="0.4"></td>
+                        <td><input type="text" class="form-control" value="0.4"></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td><input type="text" class="form-control" value="0.4"></td>
+                        <td><input type="text" class="form-control" value="0.5"></td>
+                        <td><input type="text" class="form-control" value="0.1"></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><input type="text" class="form-control" value="0.6"></td>
+                        <td><input type="text" class="form-control" value="0.3"></td>
+                        <td><input type="text" class="form-control" value="0.1"></td>
+                    </tr>
+            </tbody>
+        </table>
 
+    </div>    
+    <p class="text">
         The normalized left eigenvector corresponding to eigenvalue 1 is /((\frac{11}{39}, \frac{16}{39}, \frac{12}{39})/).
     </p>
 </div>
