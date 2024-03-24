@@ -23,6 +23,16 @@ def invariant():
     print("Probability Matrix in Flask:", probability_matrix) 
     return render_template("irreducible.html", number_states=number_states, probability_matrix=probability_matrix)
 
+@app.route("/expected-movements", methods=["GET", "POST"])
+def expectation():
+    number_states = 5
+    probability_matrix = [[0.4, 0.6, 0, 0, 0], [0.3, 0, 0, 0.7, 0], [0, 0.2, 0, 0.8, 0], [0, 0, 0.9, 0, 0.1], [0, 0, 0, 0.3, 0.7]]  # Example probability matrix
+    if request.method == "POST":
+        number_states = int(request.form.get("numberStatesInput"))
+
+    print("Probability Matrix in Flask:", probability_matrix) 
+    return render_template("randomwalk.html", number_states=number_states, probability_matrix=probability_matrix)
+
 # @app.route("/table", methods=["POST"])
 # def process_invariant_table():
 #     global number_states, probability_matrix
