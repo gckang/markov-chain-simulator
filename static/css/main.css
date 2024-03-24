@@ -1,0 +1,13 @@
+.currentState{
+    background-color: green ;
+}
+
+.potentialTravel{
+    background-color: yellow;
+}
+
+.impossibleTravel{
+    background-color: red;
+}
+
+
