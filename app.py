@@ -3,22 +3,38 @@ from simulation import Simulation
 from l_before_r import LbeforeR
 from expected_movements import ExpectedMovements
 from invariant import InvariantSimulation
+import numpy as np
 
 app = Flask(__name__)
 
 number_states = None
 probability_matrix = None
-invariant_sim = None
+# invariant_sim = None
 
 @app.route("/", methods=["GET", "POST"])
 
 def invariant():
+    global number_states, probability_matrix
     number_states = 0  # Example number of states
-    probability_matrix = [[0.2, 0.5, 0.3], [0.4, 0.3, 0.3], [0.1, 0.2, 0.7]]  # Example probability matrix
+    probability_matrix = [[]]
+    # probability_matrix = [[0.2, 0.5, 0.3], [0.4, 0.3, 0.3], [0.1, 0.2, 0.7]]  # Example probability matrix
     if request.method == "POST":
-        number_states = request.form.get("numberStatesInput")
+        number_states = int(request.form.get("numberStatesInput"))
+        probability_matrix = [[0.0] * number_states for x in range(number_states)]
     return render_template("invariant.html", number_states=number_states, probability_matrix=probability_matrix)
 
+@app.route("/invariant_table", methods=["POST"])
+def process_invariant_table():
+    global number_states, probability_matrix
+    for i in range(number_states):
+        for j in range(number_states):
+            probability_matrix[i][j] = float(request.form.get(f"probability{i}{j}"))
+
+    print(probability_matrix)
+    return render_template("invariant.html", number_states=number_states, probability_matrix=probability_matrix)
+
+
+ 
 # @app.route("/simulate_step", methods=['POST'])
 # def simulate_step():
 #     global number_states, probability_matrix, invariant_sim
