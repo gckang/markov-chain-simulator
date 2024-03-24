@@ -11,6 +11,7 @@ probability_matrix = None
 invariant_sim = None
 
 @app.route("/")
+
 def invariant():
     number_states = 3  # Example number of states
     probability_matrix = [[0.2, 0.5, 0.3], [0.4, 0.3, 0.3], [0.1, 0.2, 0.7]]  # Example probability matrix
@@ -36,3 +37,7 @@ def invariant():
 #     # }
 #     # return jsonify(response)
 #     return jsonify({'message': 'Step simulated successfully'})
+
+@app.route("/random-walk")
+def random_walk():
+    return render_template("randomwalk.html")

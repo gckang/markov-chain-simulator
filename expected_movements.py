@@ -21,10 +21,3 @@ class ExpectedMovements:
     def simulate_number_trials(self, num_trials):
         while self.total_runs < num_trials:
             self.simulation_move()
-
-A = np.array([[.2, .4, .4],
-[.1, .5, .4],
-[.6, .3, .1]])
-sim = ExpectedMovements(3, 2, 0, A)
-sim.simulate_number_trials(500)
-print (sim.average)

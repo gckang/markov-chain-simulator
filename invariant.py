@@ -21,10 +21,3 @@ class InvariantSimulation:
     def repeat_simulation(self, number_moves):
         for _ in range(number_moves):
             self.simulation_move()
-
-A = np.array([[.2, .4, .4],
-[.1, .5, .4],
-[.6, .3, .1]])
-sim = InvariantSimulation(3, A)
-sim.repeat_simulation(1000)
-print (sim.invariant_distribution)
