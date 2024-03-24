@@ -1,4 +1,4 @@
-.currentState{
+/* .currentState{
     background-color: green ;
 }
 
@@ -25,5 +25,14 @@
     width: 70%;
     margin-left: 10%;
     margin-right: 10%;
+} */
+
+.grid-container-element { 
+    display: flex;
+    justify-content: space-between;
+    width: 100%; 
+} 
+.grid-child-element { 
+    width: 48%; /* Adjust width as needed */
 }
 
