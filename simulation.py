@@ -28,6 +28,13 @@ class Simulation:
 
     def get_current_state(self):
         return self.current_state
+    
+    def get_possible_travel(self):
+        possible = np.array([])
+        for i in range(self.number_states):
+            if self.probability_matrix[self.current_state][i] > 0:
+                possible.append(i)
+        return possible
 
     def change_state(self):
         random_val = random.random()
