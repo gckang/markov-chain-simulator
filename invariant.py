@@ -1,8 +1,8 @@
-import simulation as sim
+from simulation import Simulation
 
 class InvariantSimulation:
     def __init__(self, number_states):
-        self.simulation = sim.Simulation(number_states)
+        self.simulation = Simulation(number_states)
         self.number_hits = [0] * number_states
         self.invariant_distribution = [0.0] * number_states
         self.total_moves = 0

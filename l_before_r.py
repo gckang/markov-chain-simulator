@@ -1,8 +1,8 @@
-import simulation as sim
+from simulation import Simulation
 
 class LbeforeR:
     def __init__(self, number_states, bad, goal, starting):
-        self.simulation = sim.Simulation(number_states)
+        self.simulation = Simulation(number_states)
         self.bad_state = bad
         self.goal_state = goal
         self.starting_state = starting

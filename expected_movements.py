@@ -1,8 +1,8 @@
-import simulation as sim
+from simulation import Simulation
 
 class ExpectedMovements:
     def __init__(self, number_states, goal, start):
-        self.simulation = sim.Simulation(number_states)
+        self.simulation = Simulation(number_states)
         self.starting_state = start
         self.goal_state = goal
         self.total_runs = 0
