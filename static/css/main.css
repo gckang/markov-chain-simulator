@@ -10,4 +10,20 @@
     background-color: red;
 }
 
+.text{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-font-smoothing: antialiased !important;
+    text-rendering: optimizelegibility !important;
+      letter-spacing: .03em;
+}
+
+.probabilityMatrix{
+    width: 70%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
 
