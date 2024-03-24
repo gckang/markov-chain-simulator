@@ -52,8 +52,8 @@
                         <td>1</td>
                         <td><input type="text" class="form-control" value="0.3"></td>
                         <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
                         <td><input type="text" class="form-control" value="0.7"></td>
+                        <td><input type="text" class="form-control" value="0"></td>
                         <td><input type="text" class="form-control" value="0"></td>
                     </tr>
                     <tr>
@@ -89,7 +89,7 @@
     <p class="text">
         To solve this mathematically set 0 to be a freezing state (i.e. P(0, 0) = 1, everything else = 0.) Afterwards consider Q to be the new transition matrix among transient states including our starting state. In this case we have 
 
-        $$Q = \begin{bmatrix} 0 & 0 & 0.7 & 0\\ 0.2 & 0 & 0.8 & 0 \\ 0 & 0.9 & 0 & 0.1 \\ 0 & 0 & 0.3 & 0.7 \end{bmatrix}$$
+        $$Q = \begin{bmatrix} 0 & 0.7 & 0 & 0\\ 0.2 & 0 & 0.8 & 0 \\ 0 & 0.9 & 0 & 0.1 \\ 0 & 0 & 0.3 & 0.7 \end{bmatrix}$$
 
         The matrix 
 
@@ -111,7 +111,7 @@
             { from: 1, to: 1},
             { from: 1, to: 2},
             { from: 2, to: 1},
-            { from: 2, to: 4},
+            { from: 2, to: 3},
             { from: 3, to: 2},
             { from: 3, to: 4},
             { from: 4, to: 3},
