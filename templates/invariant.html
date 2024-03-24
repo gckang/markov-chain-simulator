@@ -22,37 +22,39 @@
     <div class="container mt-4" style="width: 70%;">
         <h1>Invariant Simulation</h1>
 
-        <!-- Input field for number_states -->
-        <div class="form-group">
-            <label for="numberStatesInput">Number of States:</label>
-            <input type="number" class="form-control" id="numberStatesInput" placeholder="Enter number of states">
-        </div>
+        <form action="{{ url_for("invariant") }}" method="post">
+            <!-- Input field for number_states -->
+            <div class="form-group">
+                <label for="numberStatesInput">Number of States:</label>
+                <input type="number" class="form-control" id="numberStatesInput" placeholder="Enter number of states">
+            </div>
 
-        <!-- Step button -->
-        <button id="stepButton" class="btn btn-primary">Step</button>
+            <!-- Step button -->
+            <button id="stepButton" class="btn btn-primary">Step</button>
 
-        <!-- Table for Probability Matrix Input -->
-        <h2>Probability Matrix</h2>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>From State</th>
-                    {% for state in range(number_states) %}
-                        <th>{{ state }}</th>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for state in range(number_states) %}
+            <!-- Table for Probability Matrix Input -->
+            <h2>Probability Matrix</h2>
+            <table class="table table-bordered">
+                <thead>
                     <tr>
-                        <td>{{ state }}</td>
-                        {% for prob in probability_matrix[state] %}
-                            <td><input type="text" class="form-control" name="probability" value="{{ prob }}"></td>
+                        <th>From State</th>
+                        {% for state in range(number_states) %}
+                            <th>{{ state }}</th>
                         {% endfor %}
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for state in range(number_states) %}
+                        <tr>
+                            <td>{{ state }}</td>
+                            {% for prob in probability_matrix[state] %}
+                                <td><input type="text" class="form-control" name="probability" value="{{ prob }}"></td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
     </div>
 
 </body>
