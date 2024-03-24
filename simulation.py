@@ -1,11 +1,16 @@
 import random
+import numpy as np
 
 class Simulation:
-    simulation_probability_matrix = None
-    probability_matrix = None
 
-    @staticmethod
-    def set_probability_matrix(matrix):
+    def __init__(self, number_states, probability_matrix):
+        self.number_states = number_states
+        self.current_state = 0
+        self.probability_matrix = probability_matrix
+        self.simulation_probability_matrix = None
+        self.set_probability_matrix(probability_matrix)
+
+    def set_probability_matrix(self, matrix):
         Simulation.probability_matrix = matrix
         Simulation.simulation_probability_matrix = [[0] * len(matrix[0]) for _ in range(len(matrix))]
         for i in range(len(matrix)):
@@ -16,10 +21,6 @@ class Simulation:
                 else:
                     Simulation.simulation_probability_matrix[i][j] = Simulation.simulation_probability_matrix[i][last_positive] + matrix[i][j]
                     last_positive = j
-
-    def __init__(self, number_states):
-        self.number_states = number_states
-        self.current_state = 0
 
     def set_current_state(self, index):
         if index < len(Simulation.probability_matrix):
