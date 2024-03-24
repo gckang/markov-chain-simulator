@@ -17,12 +17,12 @@
         <h1>Random Walk</h1>
     </div>
 
-    <p>
+    <p style = "width: 80%;">
         A random walk typically consists of our transition states being some set S = {0, 1, 2,..., N} where our object moves either left or right. Formally from a state K an object can move to either K + 1 or K - 1. With this example we tackle the question of how long it takes us to reach the boundary.
     </p>
 
-    <p>
-        We shall have our states be S = {0, 1, 2, 3, 4} and our transition matrix is showcased below. The boundaries (0 and 4) are referred to as reflecting as if our object goes there it will leave the boundary eventually.
+    <p style = "width: 80%;"> 
+        We shall have our states be S = {0, 1, 2, 3, 4} and our transition matrix is showcased below. The boundaries (0 and 4) are referred to as reflecting as if our object goes there it will leave the boundary eventually. We shall ask how long we expect to take to get to 0 starting from 4.
     </p>
 
     <div class="col-md-6">
@@ -68,4 +68,16 @@
              </table>
         </div>
       </div>
+
+      <p style = "width: 80%;">
+        To solve this mathematically set 0 to be a freezing state (i.e. P(0, 0) = 1, everything else = 0.) Afterwards consider Q to be the new transition matrix among transient states including our starting state. In this case we have 
+
+        $$Q = \begin{bmatrix} 0 & 0 & 0.7 & 0\\ 0.2 & 0 & 0.8 & 0 \\ 0 & 0.9 & 0 & 0.1 \\ 0 & 0 & 0.3 & 0.7 \end{bmatrix}$$
+
+        The matrix 
+
+        $$M = (I - Q)^{-1}$$
+
+        represents the expected number of visits from state A to state B with it's entry M(A, B). To solve our question we simply need to sum over the entries M(4, k).
+      </p>
 </body>

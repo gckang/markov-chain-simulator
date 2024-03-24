@@ -12,6 +12,15 @@ class LbeforeR:
         self.goal_to_bad = 0
         self.simulation.set_current_state(starting)
 
+    def get_ratio(self):
+        return self.goal_to_bad
+    
+    def get_total(self):
+        return self.total
+    
+    def get_num_bad_num_goal(self):
+        return self.num_bad_num_goal
+
     def simulation_move(self):
         self.simulation.change_state()
         current_state = self.simulation.get_current_state()
@@ -24,6 +33,7 @@ class LbeforeR:
             self.total += 1 
             self.goal_to_bad = self.num_bad_num_goal[1] / self.total
         self.simulation.set_current_state(self.starting_state)
+        return self.simulation.get_current_state
 
     def simulate_number_trials(self, num_trials):
         while self.total < num_trials:
