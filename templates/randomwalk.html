@@ -24,81 +24,91 @@
     <div class="container mt-4" style="width: 70%;" >
         <h1 style = "text-align: center;">Random Walk</h1>
     </div>
+    <div class = "container mt-4">
+        <div>
+            <p class="text">
+                A random walk typically consists of our transition states being some set S = {0, 1, 2,..., N} where our object moves either left or right. Formally from a state K an object can move to either K + 1 or K - 1. With this example we tackle the question of how long it takes us to reach the boundary. We shall have our states be S = {0, 1, 2, 3, 4} and our transition matrix is showcased below. The boundaries (0 and 4) are referred to as reflecting as if our object goes there it will leave the boundary eventually. We shall ask how long we expect to take to get to 0 starting from 4.
+            </p>
+        </div>
 
-    <p class="text">
-        A random walk typically consists of our transition states being some set S = {0, 1, 2,..., N} where our object moves either left or right. Formally from a state K an object can move to either K + 1 or K - 1. With this example we tackle the question of how long it takes us to reach the boundary. We shall have our states be S = {0, 1, 2, 3, 4} and our transition matrix is showcased below. The boundaries (0 and 4) are referred to as reflecting as if our object goes there it will leave the boundary eventually. We shall ask how long we expect to take to get to 0 starting from 4.
-    </p>
-    <div class="probabilityMatrix">
-        <h2>Probability Matrix</h2>
-        <table class ="table table-bordered">
-            <thead>
-                <tr>
-                    <th>From State</th>
-                    {% for state in range(5) %}
-                        <th>{{ state }}</th>
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                    <tr>
-                        <td>0</td>
-                        <td><input type="text" class="form-control" value="0.4"></td>
-                        <td><input type="text" class="form-control" value="0.6"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td><input type="text" class="form-control" value="0.3"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0.7"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0.2"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0.8"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0.9"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0.1"></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0"></td>
-                        <td><input type="text" class="form-control" value="0.3"></td>
-                        <td><input type="text" class="form-control" value="0.7"></td>
-                    </tr>
-            </tbody>
-        </table>
+        <div class="grid-container-element">
+            <div class="grid-child-element purple" id="probabilityMatrix">
+                <h2>Probability Matrix</h2>
+                <table class ="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>From State</th>
+                            {% for state in range(5) %}
+                                <th>{{ state }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr>
+                                <td>0</td>
+                                <td><input type="text" class="form-control" value="0.4"></td>
+                                <td><input type="text" class="form-control" value="0.6"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td><input type="text" class="form-control" value="0.3"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0.7"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0.2"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0.8"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0.9"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0.1"></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0"></td>
+                                <td><input type="text" class="form-control" value="0.3"></td>
+                                <td><input type="text" class="form-control" value="0.7"></td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grid-child-element green" id="networkGraph">
+                <h3>Network Graph</h3>
+                <div id="mynetwork"></div>  
+            </div>
+
+        </div>        
+
+        <div>
+            <p class="text">
+                To solve this mathematically set 0 to be a freezing state (i.e. P(0, 0) = 1, everything else = 0.) Afterwards consider Q to be the new transition matrix among transient states including our starting state. In this case we have 
+        
+                $$Q = \begin{bmatrix} 0 & 0.7 & 0 & 0\\ 0.2 & 0 & 0.8 & 0 \\ 0 & 0.9 & 0 & 0.1 \\ 0 & 0 & 0.3 & 0.7 \end{bmatrix}$$
+        
+                The matrix 
+        
+                $$M = (I - Q)^{-1}$$
+        
+                represents the expected number of visits from state A to state B with it's entry M(A, B). To solve our question we simply need to sum over the entries M(4, k). This ends up being approximately 29 movements until we reach 0 from 4.
+            </p>
+        </div>
     </div>
-
-    <div id="mynetwork"></div>  
-
-    <p class="text">
-        To solve this mathematically set 0 to be a freezing state (i.e. P(0, 0) = 1, everything else = 0.) Afterwards consider Q to be the new transition matrix among transient states including our starting state. In this case we have 
-
-        $$Q = \begin{bmatrix} 0 & 0.7 & 0 & 0\\ 0.2 & 0 & 0.8 & 0 \\ 0 & 0.9 & 0 & 0.1 \\ 0 & 0 & 0.3 & 0.7 \end{bmatrix}$$
-
-        The matrix 
-
-        $$M = (I - Q)^{-1}$$
-
-        represents the expected number of visits from state A to state B with it's entry M(A, B). To solve our question we simply need to sum over the entries M(4, k).
-    </p>
-    
-
     <script type="text/javascript">
         let nodes = new vis.DataSet([   
             { id: 1, label: "0" },
