@@ -10,15 +10,16 @@
 <script type="text/javascript" id="MathJax-script" async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 </script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}"> 
 </head>
 <body>
     {% include 'navbar.html' %}
-    <div class="container mt-4" style="width: 70%;" >
-        <h1>Mathematical Vocabulary</h1>
+    <div class="container mt-4">
+        <h1  style = "text-align: center;">Mathematical Vocabulary</h1>
     </div>
 
-    <div style ="width: 80%;">
-        <p>
+    <div>
+        <p class = "text">
             Typically what is studied in linear algebra is right eigenvectors i.e. eigenvectors that satisfy
     
             $$P \pi = k \pi$$
