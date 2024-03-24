@@ -41,3 +41,15 @@ def invariant():
 @app.route("/random-walk")
 def random_walk():
     return render_template("randomwalk.html")
+
+@app.route("/graph")
+def graph_example():
+    return render_template("graph_example.html")
+
+@app.route("/irreducible-aperiodic")
+def irreducible():
+    return render_template("irreducible.html")
+
+@app.route("/vocabulary")
+def vocabulary():
+    return render_template("vocabulary.html")
