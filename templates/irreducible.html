@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}"> 
     <style type="text/css">
         #mynetwork {
@@ -73,6 +74,8 @@
             <div class="grid-child-element green" id="networkGraph">
                 <h3>Network Graph</h3>
                 <div id="mynetwork"></div>  
+                <!-- Button to simulate a step -->
+                <button id="stepButton" onClick="simulateStep()" class="btn btn-primary">Step</button>
             </div>
         </div>
         <div>
@@ -105,7 +108,6 @@
     };
     let options = {
         nodes:{
-            color: '#ffffff',
             fixed: false,
             font: '12px arial black',
             scaling: {
@@ -127,5 +129,42 @@
     let container = document.getElementById("mynetwork");
 
     let network = new vis.Network(container, data, options);
+
+    nodes.forEach(function (node) {
+        node.color = { background: 'white' }
+    });
+
+    // Function to update the color of the current state node
+    function updateCurrentState(state) {
+        // Reset color for all nodes
+        nodes.forEach(function (node) {
+            console.log(node.id)
+            console.log(state)
+            if (node.id == state) {
+                node.color = {background: 'green'};
+            } else {
+                node.color = {background: 'white'}; // Default color for other nodes
+            }
+        });
+
+        // Refresh the network
+        network.setData({nodes: nodes, edges: edges});
+    }
+
+    // Function to simulate a step and update the graph
+    function simulateStep() {
+        // Send AJAX request to Flask route
+        fetch('/simulate_step', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({}),
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Update graph with new state
+            updateCurrentState(data.current_state);
+        })
+        .catch(error => console.error('Error:', error));
+    }
 </script>
 </body>

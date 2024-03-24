@@ -7,10 +7,10 @@ import numpy as np
 
 app = Flask(__name__)
 
-# number_states = 0
-# probability_matrix = [[0.0] * number_states for x in range(number_states)]
-# network = None
-# invariant_sim = None
+number_states = 0
+probability_matrix = [[]]
+network = None
+invariant_sim = None
 
 @app.route("/", methods=["GET", "POST"])
 
@@ -22,6 +22,16 @@ def invariant():
 
     print("Probability Matrix in Flask:", probability_matrix) 
     return render_template("irreducible.html", number_states=number_states, probability_matrix=probability_matrix)
+
+@app.route("/simulate_step", methods=['POST'])
+def simulate_step_invariant():
+    global number_states, probability_matrix, invariant_sim
+    if invariant_sim is None:
+        # Initialize invariant_sim if not initialized yet
+        invariant_sim = InvariantSimulation(number_states, probability_matrix)
+    
+    current_state = 0
+    return jsonify({'current_state': current_state})
 
 @app.route("/expected-movements", methods=["GET", "POST"])
 def expectation():
@@ -54,24 +64,6 @@ def leftBeforeRight():
 #     print(probability_matrix)
 #     return render_template("invariant.html", number_states=number_states, probability_matrix=probability_matrix)
 
-
-# @app.route("/simulate_step", methods=['POST'])
-# def simulate_step_invariant():
-#     global number_states, probability_matrix, invariant_sim
-#     if invariant_sim is None:
-#         # Initialize invariant_sim if not initialized yet
-#         invariant_sim = InvariantSimulation(number_states, probability_matrix)
-    
-#     invariant_sim.simulation_move()
-    
-#     # You may need to format the data to send back to the client
-#     # For example:
-#     # response = {
-#     #     'nodes': updated_nodes,
-#     #     'edges': updated_edges
-#     # }
-#     # return jsonify(response)
-#     return render_template("invariant.html", number_states=number_states, probability_matrix=probability_matrix, network=network)
 
 @app.route("/random-walk")
 def random_walk():
