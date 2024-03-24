@@ -9,3 +9,7 @@ app = Flask(__name__)
 @app.route("/")
 def hello_world():
     return render_template("invariant.html")
+
+@app.route("/random-walk")
+def random_walk():
+    return render_template("randomwalk.html")
