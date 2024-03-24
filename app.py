@@ -70,3 +70,11 @@ def irreducible():
 @app.route("/vocabulary")
 def vocabulary():
     return render_template("vocabulary.html")
+
+@app.route("/l-before-r")
+def l_before_r():
+    return render_template("graph_example.html")
+
+@app.route("/expected-movements")
+def expected_movements():
+    return render_template("randomwalkk.html")
