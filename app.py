@@ -8,7 +8,7 @@ import numpy as np
 app = Flask(__name__)
 
 number_states = 3
-probability_matrix = [[]]
+probability_matrix: list[list[float]] = [[]]
 network = None
 invariant_sim = None
 
