@@ -4,6 +4,7 @@ from l_before_r import LbeforeR
 from expected_movements import ExpectedMovements
 from invariant import InvariantSimulation
 import numpy as np
+from werkzeug.wrappers import Request, Response
 
 app = Flask(__name__)
 
@@ -12,8 +13,10 @@ probability_matrix: list[list[float]] = [[]]
 network = None
 invariant_sim = None
 
-@app.route("/", methods=["GET", "POST"])
+def handler(environ, start_response):
+    return app(environ, start_response)
 
+@app.route("/", methods=["GET", "POST"])
 def invariant():
     global number_states, probability_matrix
     number_states = 3
