@@ -165,7 +165,7 @@
             // Display freq
             let frequenciesHTML = "Frequencies: ";
             data.frequencies.forEach((frequency, index) => {
-                frequenciesHTML += `Node ${index}: ${frequency.toFixed(2)}%`;
+                frequenciesHTML += `Node ${index}: ${(frequency.toFixed(2))*100}%`;
                 if (index < data.frequencies.length - 1) {
                     frequenciesHTML += ", ";
                 }
